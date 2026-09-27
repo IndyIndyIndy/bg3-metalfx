@@ -1,0 +1,2 @@
+name  = "BG3 MetalFX"
+dylib = "bg3metalfx.dylib"
