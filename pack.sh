@@ -46,5 +46,6 @@ if [ "${1:-}" = "--install" ]; then
     cp build/bg3metalfx.dylib "$DEST/.bg3metalfx.dylib.new"
     mv -f "$DEST/.bg3metalfx.dylib.new" "$DEST/bg3metalfx.dylib"
     cp mod.toml "$DEST/.mod.toml.new" && mv -f "$DEST/.mod.toml.new" "$DEST/mod.toml"
+    cp steam-launch.sh "$DEST/.steam-launch.sh.new" && mv -f "$DEST/.steam-launch.sh.new" "$DEST/steam-launch.sh"
     echo "Installed: $DEST"
 fi

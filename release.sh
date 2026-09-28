@@ -13,8 +13,9 @@ rm -rf dist
 mkdir -p "$STAGE"
 cp build/bg3metalfx.dylib "$STAGE/bg3metalfx.dylib"
 cp mod.toml "$STAGE/mod.toml"
+cp steam-launch.sh "$STAGE/steam-launch.sh"
 ( cd dist && zip -r -X "BG3MetalFX-v$VERSION.zip" BG3MetalFX >/dev/null )
 
-echo "Staged:  $STAGE/  (bg3metalfx.dylib + mod.toml)"
+echo "Staged:  $STAGE/  (bg3metalfx.dylib + mod.toml + steam-launch.sh)"
 echo "Archive: dist/BG3MetalFX-v$VERSION.zip  ->  attach to the GitHub release tagged v$VERSION"
 echo "         unzips into ~/Library/Application Support/BG3Mods/"
