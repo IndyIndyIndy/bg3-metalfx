@@ -121,14 +121,20 @@ __attribute__((constructor)) static void bg3metalfx_init(void) {
     Config boot = load_config();
     apply_config(boot);   // every global starts with the file's value, not a compile-time guess
 
-    // Run banner, written even with logging = false: every run has a boundary in the log, named by build
-    // and by the settings that change what a measurement means, in the words of config.toml.
+    // Run banner, written even with logging = false: every run has a boundary in the log, named by build,
+    // game version and the settings that change what a measurement means.
+    char gameVersion[64] = "?";
+    @autoreleasepool {   // no pool exists before main
+        NSString* v = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+        if ([v isKindOfClass:[NSString class]]) snprintf(gameVersion, sizeof(gameVersion), "%s", v.UTF8String);
+    }
+
     static const char* const kModeNames[] = {"metalfx", "fsr", "none"};
     static const char* const kScaleNames[] = {"auto", "ultra_quality", "quality", "balanced", "performance"};
-    log_line_always("=== BG3MetalFX v%s RUN START (built %s %s) ===  mode=%s render_scale=%s encode_path=%s "
+    log_line_always("=== BG3MetalFX v%s RUN START (built %s %s) ===  game=%s mode=%s render_scale=%s encode_path=%s "
                     "frame_interp=%d frame_cap=%d grading_bloom=%d vt_mip_bias_auto=%d sharpness=%.2f "
                     "chroma_saturation=%.2f logging=%d",
-                    BG3MFX_VERSION, __DATE__, __TIME__, kModeNames[boot.mode], kScaleNames[boot.render_scale + 1],
+                    BG3MFX_VERSION, __DATE__, __TIME__, gameVersion, kModeNames[boot.mode], kScaleNames[boot.render_scale + 1],
                     boot.encode_path == ENC_EVENT ? "event" : "separate", boot.frame_interp ? 1 : 0, boot.frame_cap,
                     boot.grading_bloom ? 1 : 0, boot.vt_mip_bias_auto ? 1 : 0, boot.sharpness, boot.chroma_saturation,
                     boot.logging ? 1 : 0);
