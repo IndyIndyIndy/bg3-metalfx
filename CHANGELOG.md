@@ -11,4 +11,5 @@ First release.
 - Granite virtual-texture mip bias and a sampler mip bias for sharper textures at the higher output
   resolution.
 - Annotated `config.toml` written on first launch, re-read while the game runs.
-- Requires an Apple Silicon Mac with macOS 26 or newer and the BG3 Mod Loader.
+- Starts through a Steam launch option (`steam-launch.sh`) or from the Terminal.
+- Requires an Apple Silicon Mac with macOS 26 or newer.

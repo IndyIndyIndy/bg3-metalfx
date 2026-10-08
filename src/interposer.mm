@@ -1,6 +1,6 @@
 // BG3 MetalFX: the Metal interposer.
 //
-// Injected via DYLD_INSERT_LIBRARIES through the BG3 mod loader. It swizzles Metal classes at runtime,
+// Injected via DYLD_INSERT_LIBRARIES at launch. It swizzles Metal classes at runtime,
 // replaces BG3's FSR 1.0 upscale with MetalFX Temporal (the scaler output is written into FSR's output
 // texture, so BG3 tonemaps and grades it natively), replicates BG3's colour grading through a harvested
 // 3D LUT, and optionally owns the presentation (virtual swapchain) to add MetalFX frame interpolation.

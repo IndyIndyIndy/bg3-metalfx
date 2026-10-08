@@ -1,9 +1,9 @@
 #!/bin/bash
 # pack.sh:           build build/bg3metalfx.dylib
-# pack.sh --install: build, then install dylib + mod.toml into $BG3MODS_HOME/BG3MetalFX
+# pack.sh --install: build, then install dylib, mod.toml and steam-launch.sh into $BG3MODS_HOME/BG3MetalFX
 #
-# Loaded the same way as the other mods (dropped into the BG3Mods folder, injected via
-# DYLD_INSERT_LIBRARIES by the loader). Not compiled with ARC on purpose; see interposer.mm.
+# Injected via DYLD_INSERT_LIBRARIES at launch, see steam-launch.sh. Not compiled with ARC on purpose,
+# see interposer.mm.
 set -eu
 HERE="$(cd "$(dirname "$0")" && pwd)"
 cd "$HERE"
